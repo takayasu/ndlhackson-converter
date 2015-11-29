@@ -6,104 +6,70 @@ import java.util.Random;
 
 import org.apache.commons.lang3.StringUtils;
 
-import jp.go.ndl.hackson.io.DBStringUtil;
+import jp.go.ndl.hackson.io.db.DBStringUtil;
 
 public class TitleWord {
-	
+
 	public static final Random seed = new Random();
-	
-	public static final String[] dbColumns = { "id", "wcount", "wcount_read", "value", "value_read","hint" };
-	public static final String[] dbTypeColumns = { "word_id", "type", "typevalue" };
-	
+
 	private String id;
 	private String title;
 	private String titleReading;
 	private String ndc;
 	private String author;
-	
+
 	private int valueCount;
 	private int readingCount;
-	
-	public TitleWord(String id,String title,String titleReading,String ndc,String author){
-		
+
+	public TitleWord(String id, String title, String titleReading, String ndc,
+			String author) {
+
 		this.id = id;
 		this.title = StringUtils.deleteWhitespace(title);
 		this.titleReading = StringUtils.deleteWhitespace(titleReading);
 		this.ndc = ndc;
 		this.author = author;
-		
-		if(StringUtils.isNotEmpty(title)){
-			valueCount = title.length();			
+
+		if (StringUtils.isNotEmpty(title)) {
+			valueCount = title.length();
 		}
-		if(StringUtils.isNotEmpty(titleReading)){
+		if (StringUtils.isNotEmpty(titleReading)) {
 			readingCount = titleReading.length();
 		}
-		
-
-		
-	}
-	
-	public TitleWord() {
-	}
-
-	public List<String> outputLine(){
-		List<String> result = new ArrayList<String>();
-		result.add(titleReading);
-		result.add(createHint());
-		
-		return result;
-		
-	}
-	
-	
-	public String dbValueString() {
-
-		String[] result = new String[6];
-		result[0] = DBStringUtil.convertSinglePhase(id);
-		result[1] = String.valueOf(valueCount);
-		result[2] = String.valueOf(readingCount);
-		result[3] = DBStringUtil.convertSinglePhase(title);
-		result[4] = DBStringUtil.convertSinglePhase(titleReading);
-		result[5] = DBStringUtil.convertSinglePhase(createHint());
-
-		return DBStringUtil.phaseString(result);
 
 	}
 
-	private String createHint() {
+	public String createHint() {
 
 		String hintTemplate = "NDC %sに所属する%sによる書誌のタイトル";
-		
-		return String.format(hintTemplate,ndc,author);
+
+		return String.format(hintTemplate, ndc, author);
 	}
 
-	public String dbColumnString() {
-		return DBStringUtil.phaseString(dbColumns);
+	public String getTitleReading() {
+		return titleReading;
 	}
 
-
-
-	public String dbColumnStringType() {
-		return DBStringUtil.phaseString(dbTypeColumns);
+	public void setTitleReading(String titleReading) {
+		this.titleReading = titleReading;
 	}
 
-	public List<String> dbValueTypeString() {
-
-		List<String> list = new ArrayList<String>();
-
-			String[] result = new String[3];
-			result[0] = DBStringUtil.convertSinglePhase(id);
-			result[1] = DBStringUtil.convertSinglePhase("ndc");
-			result[2] = DBStringUtil.convertSinglePhase(ndc);
-
-			list.add(DBStringUtil.phaseString(result));
-
-		return list;
+	public int getValueCount() {
+		return valueCount;
 	}
-	
-	
-	
-	
+
+	public void setValueCount(int valueCount) {
+		this.valueCount = valueCount;
+	}
+
+	public int getReadingCount() {
+		return readingCount;
+	}
+
+	public void setReadingCount(int readingCount) {
+		this.readingCount = readingCount;
+	}
+
 	public String getId() {
 		return id;
 	}

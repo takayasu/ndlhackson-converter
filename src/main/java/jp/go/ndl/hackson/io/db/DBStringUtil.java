@@ -1,4 +1,4 @@
-package jp.go.ndl.hackson.io;
+package jp.go.ndl.hackson.io.db;
 
 public class DBStringUtil {
 

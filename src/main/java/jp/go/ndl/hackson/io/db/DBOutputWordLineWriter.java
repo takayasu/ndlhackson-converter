@@ -1,9 +1,11 @@
-package jp.go.ndl.hackson.io;
+package jp.go.ndl.hackson.io.db;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import jp.go.ndl.hackson.io.Writer;
 import jp.go.ndl.hackson.model.WordList;
+import jp.go.ndl.hackson.model.db.WordListForDB;
 
 public class DBOutputWordLineWriter implements Writer<WordList> {
 
@@ -12,15 +14,20 @@ public class DBOutputWordLineWriter implements Writer<WordList> {
 	
 	
 	public String wordList(WordList word) {
-		return String.format(WORD_TABLE, word.dbColumnString(),word.dbValueString());		
+		
+		WordListForDB proxy = new WordListForDB(word);
+		
+		return String.format(WORD_TABLE, proxy.dbColumnString(),proxy.dbValueString());		
 	}
 
 	public List<String> wordType(WordList word) {
 		
+		WordListForDB proxy = new WordListForDB(word);
+		
 		List<String> list = new ArrayList<String>();
 		
-		for(String value : word.dbValueTypeString()){
-			String single = String.format(WORD_TYPE_TABLE, word.dbColumnStringType(),value);
+		for(String value : proxy.dbValueTypeString()){
+			String single = String.format(WORD_TYPE_TABLE, proxy.dbColumnStringType(),value);
 			list.add(single);
 		}
 		

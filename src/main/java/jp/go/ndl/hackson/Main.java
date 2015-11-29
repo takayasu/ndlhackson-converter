@@ -7,9 +7,9 @@ import java.util.List;
 
 import org.apache.commons.io.FileUtils;
 
-import jp.go.ndl.hackson.io.DBOutputWordLineWriter;
 import jp.go.ndl.hackson.io.Reader;
 import jp.go.ndl.hackson.io.WordListReader;
+import jp.go.ndl.hackson.io.db.DBOutputWordLineWriter;
 import jp.go.ndl.hackson.model.WordList;
 
 public class Main {

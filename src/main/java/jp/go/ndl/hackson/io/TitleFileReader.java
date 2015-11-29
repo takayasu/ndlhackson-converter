@@ -4,31 +4,6 @@ import jp.go.ndl.hackson.model.TitleWord;
 
 public class TitleFileReader extends AbstractReader<TitleWord> {
 	
-//	public List<TitleWord> read(String file) throws IOException {
-//
-//		List<TitleWord> list = new ArrayList<TitleWord>();
-//		
-//		if(StringUtils.isEmpty(file)){
-//			System.err.println("FilePath is not string.");
-//			return list;
-//		}
-//		
-//		File f = new File(file);
-//		
-//		LineIterator it = FileUtils.lineIterator(f, "UTF-8");
-//		
-//		try{
-//			while(it.hasNext()){
-//				list.add(createOne(it.nextLine()));
-//			}
-//			
-//		}finally{
-//			it.close();
-//		}
-//		
-//
-//		return list;
-//	}
 	
 	/**
 	 * URL

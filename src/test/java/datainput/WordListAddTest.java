@@ -6,9 +6,9 @@ import static org.hamcrest.CoreMatchers.*;
 import java.io.IOException;
 import java.util.List;
 
-import jp.go.ndl.hackson.io.DBOutputWordLineWriter;
 import jp.go.ndl.hackson.io.Reader;
 import jp.go.ndl.hackson.io.WordListReader;
+import jp.go.ndl.hackson.io.db.DBOutputWordLineWriter;
 import jp.go.ndl.hackson.model.WordList;
 
 import org.junit.Test;

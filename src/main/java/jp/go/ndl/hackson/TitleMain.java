@@ -7,6 +7,7 @@ import java.util.List;
 
 import jp.go.ndl.hackson.io.TitleFileReader;
 import jp.go.ndl.hackson.model.TitleWord;
+import jp.go.ndl.hackson.model.text.TitleWordForText;
 
 import org.apache.commons.io.FileUtils;
 
@@ -21,14 +22,15 @@ public class TitleMain {
 		//List<String> textList =list.stream().map(word->word.outputLine()).collect(Collectors.toList());
 		
 		for(TitleWord word: list){
-			textList.addAll(word.outputLine());
+			TitleWordForText proxy = new TitleWordForText(word);
+			textList.addAll(proxy.outputLine());
 		}
 		
 		int size = textList.size()/2;
 
 		textList.add(0, String.valueOf(size));
 		
-		FileUtils.writeLines(new File(args[0]), textList);
+		FileUtils.writeLines(new File(args[1]), textList);
 	}
 
 }

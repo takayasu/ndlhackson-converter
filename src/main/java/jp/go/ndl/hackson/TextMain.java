@@ -10,6 +10,7 @@ import org.apache.commons.io.FileUtils;
 import jp.go.ndl.hackson.io.Reader;
 import jp.go.ndl.hackson.io.WordListReader;
 import jp.go.ndl.hackson.model.WordList;
+import jp.go.ndl.hackson.model.text.WordListForText;
 
 public class TextMain {
 
@@ -21,7 +22,8 @@ public class TextMain {
 		List<String> textList = new ArrayList<String>();
 		
 		for(WordList word: list){
-			textList.addAll(word.outputLine());
+			WordListForText proxy = new WordListForText(word);
+			textList.addAll(proxy.outputLine());
 		}
 		
 		assert(textList.size() % 2 == 0);
