@@ -18,8 +18,8 @@ public class WordList implements CommonData{
 	private String reading;
 	private List<String> ndcList;
 
-	int valueCount;
-	int readingCount;
+	private int valueCount;
+	private int readingCount;
 
 	public void calc() {
 		if (StringUtils.isNotEmpty(value)) {
