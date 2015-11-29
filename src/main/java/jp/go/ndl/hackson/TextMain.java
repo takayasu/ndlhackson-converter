@@ -1,37 +1,24 @@
 package jp.go.ndl.hackson;
 
-import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
-
-import org.apache.commons.io.FileUtils;
+import java.util.stream.Collectors;
 
 import jp.go.ndl.hackson.io.Reader;
 import jp.go.ndl.hackson.io.WordListReader;
+import jp.go.ndl.hackson.io.text.TextDataWriter;
+import jp.go.ndl.hackson.model.CommonData;
 import jp.go.ndl.hackson.model.WordList;
-import jp.go.ndl.hackson.model.text.WordListForText;
 
 public class TextMain {
 
 	public static void main(String[] args) throws IOException {
 
 		Reader<WordList> r = new WordListReader();
-		List<WordList> list = r.read("data/NDC9-1_utf8.txt");
+		List<WordList> list = r.read(args[0]);
 		
-		List<String> textList = new ArrayList<String>();
-		
-		for(WordList word: list){
-			WordListForText proxy = new WordListForText(word);
-			textList.addAll(proxy.outputLine());
-		}
-		
-		assert(textList.size() % 2 == 0);
-		int size = textList.size() /2 ;
+		TextDataWriter.write(args[1], list.stream().map(data->(CommonData)data).collect(Collectors.toList()));
 
-		textList.add(0, String.valueOf(size));
-		
-		FileUtils.writeLines(new File("data/output.txt"), textList);
 		
 	}
 

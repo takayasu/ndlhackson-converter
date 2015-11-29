@@ -9,14 +9,14 @@ import jp.go.ndl.hackson.model.db.DBOutputModel;
 
 import org.apache.commons.lang3.StringUtils;
 
-public class WordList {
+public class WordList implements CommonData{
 
 	private Random seed = new Random();
 
-	String id;
-	String value;
-	String reading;
-	List<String> ndcList;
+	private String id;
+	private String value;
+	private String reading;
+	private List<String> ndcList;
 
 	int valueCount;
 	int readingCount;
@@ -85,6 +85,24 @@ public class WordList {
 
 	public void setNdcList(List<String> ndcList) {
 		this.ndcList = ndcList;
+	}
+
+	@Override
+	public String getKeyword() {
+		return reading;
+	}
+
+	@Override
+	public String getHint() {
+		return createHint();
+	}
+
+	public String createHint() {
+		
+		String hintTemplate = "%sに属する%sにあたる言葉";
+		String ndc = String.join(",", ndcList);
+		
+		return String.format(hintTemplate, ndc,value);
 	}
 
 }

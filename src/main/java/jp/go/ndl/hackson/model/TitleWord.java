@@ -1,14 +1,10 @@
 package jp.go.ndl.hackson.model;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
 import org.apache.commons.lang3.StringUtils;
 
-import jp.go.ndl.hackson.io.db.DBStringUtil;
-
-public class TitleWord {
+public class TitleWord implements CommonData {
 
 	public static final Random seed = new Random();
 
@@ -100,6 +96,14 @@ public class TitleWord {
 
 	public void setAuthor(String author) {
 		this.author = author;
+	}
+
+	public String getKeyword() {
+		return titleReading;
+	}
+
+	public String getHint() {
+		return createHint();
 	}
 
 }

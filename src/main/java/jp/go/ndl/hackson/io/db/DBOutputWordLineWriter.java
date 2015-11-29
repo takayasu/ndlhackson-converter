@@ -3,7 +3,6 @@ package jp.go.ndl.hackson.io.db;
 import java.util.ArrayList;
 import java.util.List;
 
-import jp.go.ndl.hackson.io.Writer;
 import jp.go.ndl.hackson.model.WordList;
 import jp.go.ndl.hackson.model.db.WordListForDB;
 
